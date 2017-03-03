@@ -13,7 +13,7 @@
 		"experimentalDecorators": true,
 
 		"rootDir": "./src",
-		"outDir": "./dist",
+		"outDir": "./aot",
 		"typeRoots": [ "./node_modules/@types" ],
 		"types": [
 			"node"

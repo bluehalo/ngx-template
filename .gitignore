@@ -44,6 +44,7 @@ nb-configuration.xml
 *.ngfactory.js
 *.ngfactory.d.ts
 *.ngsummary.json
+aot
 
 # Node
 node_modules/

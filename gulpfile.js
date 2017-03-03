@@ -30,6 +30,10 @@ gulp.task('env:BUILD', () => {
 	BUILD = true;
 });
 
+let AOT = false;
+gulp.task('env:AOT', () => {
+	AOT = true;
+});
 
 /**
  * Validation Tasks
@@ -60,6 +64,11 @@ gulp.task('clean', () => {
 
 gulp.task('ngc', () => {
 	return ngc('tsconfig.json');
+});
+
+gulp.task('aot-dist', ['ngc'], () => {
+	return gulp.src(assets.src.aot, { base: './aot' })
+		.pipe(gulp.dest(assets.dist.dir));
 });
 
 // Build JS from the TS source
@@ -181,12 +190,11 @@ gulp.task('watch-ts', () => {
 
 gulp.task('dev', (done) => { runSequence('validate-ts', [ 'webpack-dev-jit-server', 'watch-ts' ], done); } );
 
-gulp.task('dev-aot', (done) => { runSequence('clean', 'ngc', [ 'webpack-dev-aot-server', 'watch-ts' ], done); } );
+gulp.task('dev-aot', (done) => { runSequence('env:AOT', 'clean', 'ngc', [ 'webpack-dev-aot-server', 'watch-ts' ], done); } );
 
 gulp.task('build', (done) => { runSequence('env:BUILD', 'validate-ts', 'build-ts', 'build-js', done); } );
 
-gulp.task('build-aot', (done) => { runSequence('env:BUILD', 'clean', 'validate-ts', 'ngc', 'build-js')});
-
+gulp.task('build-aot', (done) => { runSequence('env:BUILD', 'env:AOT', 'clean', 'validate-ts', 'aot-dist', 'build-js', done); });
 
 // Default task builds
 gulp.task('default', [ 'build' ]);

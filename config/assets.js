@@ -14,7 +14,8 @@ module.exports = {
 	// Source files and directories
 	src: {
 		allTs: [ 'src/**/*.ts' ],
-		ts: [ 'src/**/*.ts', '!src/demo/**/*.ts' ]
+		ts: [ 'src/**/*.ts', '!src/demo/**/*.ts' ],
+		aot: [ 'aot/**', '!{aot/demo,aot/demo/**}' ]
 	},
 
 	// Distribution related items
