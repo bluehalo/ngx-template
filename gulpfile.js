@@ -30,11 +30,6 @@ gulp.task('env:BUILD', () => {
 	BUILD = true;
 });
 
-let AOT = false;
-gulp.task('env:AOT', () => {
-	AOT = true;
-});
-
 /**
  * Validation Tasks
  */
@@ -194,7 +189,7 @@ gulp.task('dev-aot', (done) => { runSequence('env:AOT', 'clean', 'ngc', [ 'webpa
 
 gulp.task('build', (done) => { runSequence('env:BUILD', 'validate-ts', 'build-ts', 'build-js', done); } );
 
-gulp.task('build-aot', (done) => { runSequence('env:BUILD', 'env:AOT', 'clean', 'validate-ts', 'aot-dist', 'build-js', done); });
+gulp.task('build-aot', (done) => { runSequence('env:BUILD', 'clean', 'validate-ts', 'aot-dist', 'build-js', done); });
 
 // Default task builds
 gulp.task('default', [ 'build' ]);
