@@ -4,24 +4,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { NgModule } from '@angular/core';
-import { ExampleComponent } from './example.component';
-var ExampleModule = (function () {
-    function ExampleModule() {
+import { Component } from '@angular/core';
+var AppComponent = (function () {
+    function AppComponent() {
     }
-    return ExampleModule;
+    return AppComponent;
 }());
-ExampleModule = __decorate([
-    NgModule({
-        imports: [],
-        exports: [
-            ExampleComponent
-        ],
-        declarations: [
-            ExampleComponent
-        ],
-        providers: []
+AppComponent = __decorate([
+    Component({
+        selector: 'app-component',
+        templateUrl: './app.component.html'
     })
-], ExampleModule);
-export { ExampleModule };
-//# sourceMappingURL=example.module.js.map
+], AppComponent);
+export { AppComponent };
+//# sourceMappingURL=app.component.js.map

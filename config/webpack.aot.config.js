@@ -27,7 +27,7 @@ module.exports = () => {
 	 *   'application' - Application code
 	 */
 	wpConfig.entry = {
-		application: path.resolve('./src/demo/main.ts'),
+		application: path.resolve('./src/demo/main.aot.ts'),
 		vendor: path.resolve('./src/demo/vendor.ts')
 	};
 
@@ -39,7 +39,7 @@ module.exports = () => {
 	wpConfig.output = {};
 
 	// Set up for dev middleware
-	wpConfig.output.path = path.resolve('./public');
+	wpConfig.output.path = path.resolve('./dist');
 	wpConfig.output.publicPath = '/';
 	wpConfig.output.filename = '[name].js';
 	wpConfig.output.chunkFilename = '[name].js';
@@ -65,20 +65,12 @@ module.exports = () => {
 	wpConfig.module = {
 
 		// Configured loaders
-		loaders: [
+		rules: [
 
 			// Typescript loader
 			{
 				test: /\.ts$/,
-				loader: 'ts-loader',
-				options: {
-					configFileName: path.resolve('./tsconfig-dev.json')
-				}
-			},
-
-			{
-				test: /\.ts$/,
-				loader: 'angular2-template-loader'
+				use: ['awesome-typescript-loader', 'angular2-template-loader']
 			},
 
 			// CSS loader
@@ -111,6 +103,7 @@ module.exports = () => {
 
 	// Chunk common code if we're not running in test mode
 	wpConfig.plugins.push(
+		new webpack.ProgressPlugin(),
 		new webpack.ProvidePlugin({
 			// Declare global libraries here (eg. D3, JQuery, etc)
 			// d3: 'd3'

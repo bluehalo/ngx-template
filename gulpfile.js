@@ -2,11 +2,13 @@
 
 let
 	chalk = require('chalk'),
+	del = require('del'),
 	glob = require('glob'),
 	gulp = require('gulp'),
 	gulpLoadPlugins = require('gulp-load-plugins'),
 	merge = require('merge2'),
 	path = require('path'),
+	ngc = require('gulp-ngc'),
 	rollup = require('rollup'),
 	runSequence = require('run-sequence'),
 	webpack = require('webpack'),
@@ -47,10 +49,18 @@ gulp.task('validate-ts', () => {
 
 });
 
-
 /**
  * Build
  */
+
+// Clean all
+gulp.task('clean', () => {
+	return del(['src/**/*.ngfactory.ts', 'src/**/*.ngstyle.ts', 'src/**/*.ngsummary.json', 'build', 'dist', 'aot'])
+});
+
+gulp.task('ngc', () => {
+	return ngc('tsconfig.json');
+});
 
 // Build JS from the TS source
 let tsProject = plugins.typescript.createProject(path.resolve('./tsconfig.json'));
@@ -114,9 +124,32 @@ gulp.task('rollup-js', () => {
 /**
  * Develop
  */
-gulp.task('webpack-dev-server', (done) => {
+gulp.task('webpack-dev-aot-server', (done) => {
 	// Start a webpack-dev-server
-	let webpackConfig = require(path.resolve('./config/webpack.config.js'))();
+	let webpackConfig = require(path.resolve('./config/webpack.aot.config.js'))();
+	let compiler = webpack(webpackConfig);
+
+	new webpackDevServer(compiler, {
+		stats: {
+			colors: true,
+			chunks: false
+		},
+		watchOptions: {
+			aggregateTimeout: 300,
+			poll: 1000
+		},
+	}).listen(9000, 'localhost', (err) => {
+		if(err) throw new plugins.util.PluginError('webpack', err);
+
+		// Server listening
+		plugins.util.log('[webpack]', 'http://localhost:9000/webpack-dev-server/index.html');
+	});
+});
+
+
+gulp.task('webpack-dev-jit-server', (done) => {
+	// Start a webpack-dev-server
+	let webpackConfig = require(path.resolve('./config/webpack.jit.config.js'))();
 	let compiler = webpack(webpackConfig);
 
 	new webpackDevServer(compiler, {
@@ -146,9 +179,14 @@ gulp.task('watch-ts', () => {
  * --------------------------
  */
 
-gulp.task('dev', (done) => { runSequence('validate-ts', [ 'webpack-dev-server', 'watch-ts' ], done); } );
+gulp.task('dev', (done) => { runSequence('validate-ts', [ 'webpack-dev-jit-server', 'watch-ts' ], done); } );
+
+gulp.task('dev-aot', (done) => { runSequence('clean', 'ngc', [ 'webpack-dev-aot-server', 'watch-ts' ], done); } );
 
 gulp.task('build', (done) => { runSequence('env:BUILD', 'validate-ts', 'build-ts', 'build-js', done); } );
+
+gulp.task('build-aot', (done) => { runSequence('env:BUILD', 'clean', 'validate-ts', 'ngc', 'build-js')});
+
 
 // Default task builds
 gulp.task('default', [ 'build' ]);

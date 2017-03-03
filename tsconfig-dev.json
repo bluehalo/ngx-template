@@ -10,7 +10,7 @@
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 
-		"lib": [ "es5", "dom" ],
+		"lib": [ "es2015", "dom" ],
 
 		"noImplicitAny": true,
 		"suppressImplicitAnyIndexErrors": true,
@@ -23,6 +23,9 @@
 	},
 
 	"exclude": [
-		"node_modules"
+		"node_modules",
+		"dist",
+		"**/*.ngfactory.ts",
+		"src/**/main*.ts"
 	]
 }

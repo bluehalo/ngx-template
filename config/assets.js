@@ -19,6 +19,7 @@ module.exports = {
 
 	// Distribution related items
 	dist: {
+		aotDir: 'aot/src',
 		dir: 'dist',
 		bundleDir: 'dist/bundles'
 	}

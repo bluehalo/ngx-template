@@ -1,7 +1,9 @@
 {
 	"compilerOptions": {
+		"baseUrl": "",
+
 		"target": "es5",
-		"module": "es6",
+		"module": "es2015",
 
 		"moduleResolution": "node",
 
@@ -10,19 +12,37 @@
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 
-		"lib": [ "es5", "dom" ],
+		"rootDir": "./src",
+		"outDir": "./dist",
+		"typeRoots": [ "./node_modules/@types" ],
+		"types": [
+			"node"
+		],
+		"lib": [ "es2015", "dom" ],
+
+		"skipLibCheck": true,
 
 		"noImplicitAny": true,
 		"suppressImplicitAnyIndexErrors": true,
 
 		"allowUnreachableCode": false,
-		"noUnusedParameters": true,
-		"noUnusedLocals": true,
+		"noUnusedParameters": false,
+		"noUnusedLocals": false,
 
 		"sourceMap": true
 	},
 
 	"exclude": [
-		"node_modules"
-	]
+		"node_modules",
+		"dist",
+		"**/*.d.ts",
+		"**/*.ngfactory.ts"
+	],
+
+	"awesomeTypescriptLoaderOptions": {
+		"forkChecker": true,
+		"useWebpackText": true
+	},
+	"angularCompilerOptions": {
+	}
 }

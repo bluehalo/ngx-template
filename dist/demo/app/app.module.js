@@ -5,23 +5,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { NgModule } from '@angular/core';
-import { ExampleComponent } from './example.component';
-var ExampleModule = (function () {
-    function ExampleModule() {
+import { BrowserModule } from '@angular/platform-browser';
+import { AppComponent } from './app.component';
+import { ExampleDemoModule } from './example/example-demo.module';
+var AppModule = (function () {
+    function AppModule() {
     }
-    return ExampleModule;
+    return AppModule;
 }());
-ExampleModule = __decorate([
+AppModule = __decorate([
     NgModule({
-        imports: [],
-        exports: [
-            ExampleComponent
+        imports: [
+            BrowserModule,
+            ExampleDemoModule
         ],
         declarations: [
-            ExampleComponent
+            AppComponent
         ],
+        bootstrap: [AppComponent],
         providers: []
     })
-], ExampleModule);
-export { ExampleModule };
-//# sourceMappingURL=example.module.js.map
+], AppModule);
+export { AppModule };
+//# sourceMappingURL=app.module.js.map

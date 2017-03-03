@@ -37,6 +37,14 @@ nb-configuration.xml
 # Build
 ###################
 
+# AOT
+*.metadata.json
+*.map.js
+*.ngfactory.ts
+*.ngfactory.js
+*.ngfactory.d.ts
+*.ngsummary.json
+
 # Node
 node_modules/
 npm-debug.log
