@@ -1,5 +1,8 @@
 # Changelog
 
+## 8.0.0
+- Angular 11
+
 ## 5.0.0
 - Angular 8
 
