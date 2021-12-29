@@ -4,16 +4,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { ExampleDemoModule } from './example/example-demo.module';
 
-
 @NgModule({
-	imports: [
-		BrowserModule,
-		ExampleDemoModule
-	],
-	declarations: [
-		AppComponent
-	],
-	bootstrap: [ AppComponent ],
-	providers: [ ]
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    ExampleDemoModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

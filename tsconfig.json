@@ -1,33 +1,36 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
-	"compilerOptions": {
-		"target": "es5",
-		"module": "commonjs",
-
-		"moduleResolution": "node",
-
-		"declaration": false,
-		"noEmitHelpers": false,
-		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true,
-
-		"lib": [ "es5", "es2015", "es2018", "dom" ],
-
-		"noImplicitAny": true,
-		"suppressImplicitAnyIndexErrors": true,
-
-		"allowUnreachableCode": false,
-		"noUnusedParameters": true,
-		"noUnusedLocals": true,
-
-		"sourceMap": true
-	},
-
-	"exclude": [
-		"./node_modules"
-	],
-
-	"include": [
-		"./src/**/*.ts"
-	]
-
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "paths": {
+      "ngx-template": [
+        "dist/ngx-template/ngx-template",
+        "dist/ngx-template"
+      ]
+    },
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ]
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
 }

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 // Local Imports
 import { ExampleDemoComponent } from './example-demo.component';
-import { ExampleModule } from '../../../example/example.module';
+import { ExampleModule } from '../../../library/src/lib/example.module';
 
 @NgModule({
 	imports: [

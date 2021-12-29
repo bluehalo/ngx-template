@@ -1,0 +1,11 @@
+{
+  "name": "ngx-template",
+  "version": "9.0.0",
+  "peerDependencies": {
+    "@angular/common": "^11.2.7",
+    "@angular/core": "^11.2.7"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}
